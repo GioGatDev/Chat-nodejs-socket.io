@@ -18,7 +18,12 @@ app.get('/hola-a-todos', function(req, res){
 io.on('connection', function(socket){
 	console.log("El Cliente con IP:"+socket.handshake.address+" se ha conectado...");
 
-	socket.emit('messages', messages);
+		socket.emit('messages', messages); //emite los mensajes desde el servidor 
+		socket.on('add-message', function(data){
+		messages.push(data); //añade datos al array messages
+		io.sockets.emit('messages', messages); //emite los mensajes a todos los clientes
+
+	});//socket.on = función de socket.io para recoger un evento 
 });
 
 server.listen(6677, function() {
