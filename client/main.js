@@ -1,4 +1,4 @@
- var socket = io.connect('http://192.168.1.133:6677',{'forceNew':true});
+ var socket = io.connect('IPDELSERVIDOR',{'forceNew':true});
 
  socket.on('messages', function(data){
  	//recibe los datos que le llegan del servidor
